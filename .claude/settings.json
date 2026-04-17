@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); PROMPT=$(echo \"$INPUT\" | python -c \"import sys,json; d=json.load(sys.stdin); print(d.get('prompt','(no prompt)'))\"); TS=$(date -u '+%Y-%m-%d %H:%M:%S UTC'); printf \"## User [%s]\\n\\n%s\\n\\n---\\n\\n\" \"$TS\" \"$PROMPT\" >> /c/Users/kalip/workspaces/titan/assessment/titan-ai-assessment/prompt-log.md 2>/dev/null || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf \"## Claude [%s]\\n\\n[Response completed]\\n\\n---\\n\\n\" \"$(date -u '+%Y-%m-%d %H:%M:%S UTC')\" >> /c/Users/kalip/workspaces/titan/assessment/titan-ai-assessment/prompt-log.md 2>/dev/null || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
