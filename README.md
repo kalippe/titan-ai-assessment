@@ -1,1 +1,1 @@
-# titan-ai-assessment
+# Titan AI Assessment
